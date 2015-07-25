@@ -13,6 +13,7 @@
 		965FA7A91B5D5FF4005FF0D7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 965FA7A81B5D5FF4005FF0D7 /* Images.xcassets */; };
 		965FA7AC1B5D5FF4005FF0D7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 965FA7AA1B5D5FF4005FF0D7 /* LaunchScreen.xib */; };
 		965FA7B81B5D5FF4005FF0D7 /* Pitch_PerfectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965FA7B71B5D5FF4005FF0D7 /* Pitch_PerfectTests.swift */; };
+		965FA7C21B5D749D005FF0D7 /* PlaySpeedsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965FA7C11B5D749D005FF0D7 /* PlaySpeedsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		965FA7B11B5D5FF4005FF0D7 /* Pitch PerfectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pitch PerfectTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		965FA7B61B5D5FF4005FF0D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		965FA7B71B5D5FF4005FF0D7 /* Pitch_PerfectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pitch_PerfectTests.swift; sourceTree = "<group>"; };
+		965FA7C11B5D749D005FF0D7 /* PlaySpeedsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaySpeedsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 			children = (
 				965FA7A11B5D5FF4005FF0D7 /* AppDelegate.swift */,
 				965FA7A31B5D5FF4005FF0D7 /* ViewController.swift */,
+				965FA7C11B5D749D005FF0D7 /* PlaySpeedsViewController.swift */,
 				965FA7A51B5D5FF4005FF0D7 /* Main.storyboard */,
 				965FA7A81B5D5FF4005FF0D7 /* Images.xcassets */,
 				965FA7AA1B5D5FF4005FF0D7 /* LaunchScreen.xib */,
@@ -214,6 +217,7 @@
 			files = (
 				965FA7A41B5D5FF4005FF0D7 /* ViewController.swift in Sources */,
 				965FA7A21B5D5FF4005FF0D7 /* AppDelegate.swift in Sources */,
+				965FA7C21B5D749D005FF0D7 /* PlaySpeedsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
