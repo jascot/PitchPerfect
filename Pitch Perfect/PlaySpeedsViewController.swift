@@ -7,12 +7,23 @@
 //
 
 import UIKit
+import AVFoundation
 
-class PlaySpeedsViewController: UIViewController {
+class PlaySpeedsViewController: UIViewController, AVAudioPlayerDelegate {
 
+    var audio = AVAudioPlayer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if let path = NSBundle.mainBundle().pathForResource("movie_quote", ofType: "mp3") {
+            audio = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: path), error: nil)
+            
+            audio.prepareToPlay()
+            audio.delegate = self
+            audio.enableRate = true
+            
+    }
         // Do any additional setup after loading the view.
     }
 
@@ -22,9 +33,13 @@ class PlaySpeedsViewController: UIViewController {
     }
     
     @IBAction func playSlowly(sender: UIButton) {
+        audio.rate = 0.5
+        audio.play()
     }
 
     @IBAction func playQuickly(sender: UIButton) {
+        audio.rate = 2.0
+        audio.play()
     }
     /*
     // MARK: - Navigation
