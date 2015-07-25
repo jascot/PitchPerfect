@@ -13,6 +13,8 @@ class PlaySpeedsViewController: UIViewController, AVAudioPlayerDelegate {
 
     var audio = AVAudioPlayer()
     
+    @IBOutlet weak var stopButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,12 +37,22 @@ class PlaySpeedsViewController: UIViewController, AVAudioPlayerDelegate {
     @IBAction func playSlowly(sender: UIButton) {
         audio.rate = 0.5
         audio.play()
+        stopButton.hidden = false
     }
 
     @IBAction func playQuickly(sender: UIButton) {
         audio.rate = 2.0
         audio.play()
+        stopButton.hidden = false
     }
+    
+    @IBAction func stopAudio(sender: UIButton) {
+        audio.stop()
+        stopButton.hidden = true
+    }
+    
+    
+    
     /*
     // MARK: - Navigation
 
