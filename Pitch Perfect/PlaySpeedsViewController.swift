@@ -11,37 +11,48 @@ import AVFoundation
 
 class PlaySpeedsViewController: UIViewController, AVAudioPlayerDelegate {
 
+    var engine: AVAudioEngine!
     var player: AVAudioPlayer!
     var audio: RecordedAudio!
+    var effect: AVAudioUnitTimePitch!
+    var file: AVAudioFile!
     
     @IBOutlet weak var stopButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let path = NSBundle.mainBundle().pathForResource("movie_quote", ofType: "mp3") {
-            player = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: path), error: nil)
-            
-            player.prepareToPlay()
-            player.delegate = self
-            player.enableRate = true
-            
-    }
-        // Do any additional setup after loading the view.
+        player = AVAudioPlayer(contentsOfURL: audio.filePathUrl, error: nil)
+        engine = AVAudioEngine()
+        effect = AVAudioUnitTimePitch()
+        engine.attachNode(effect)
+        engine.connect(effect, to: engine.outputNode, format: nil)
+        file = AVAudioFile(forReading: audio.filePathUrl, error: nil)
+        
+        player.prepareToPlay()
+        player.delegate = self
+        player.enableRate = true
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func playSlowly(sender: UIButton) {
-        player.rate = 0.5
+        effect.rate = 0.5
+        effect.pitch = 0
         restartAudio()
     }
 
     @IBAction func playQuickly(sender: UIButton) {
-        player.rate = 2.0
+        effect.rate = 2.0
+        effect.pitch = 0
+        restartAudio()
+    }
+
+    @IBAction func playHighPitched(sender: UIButton) {
+        effect.rate = 1
+        effect.pitch = 1000
         restartAudio()
     }
     
@@ -52,19 +63,19 @@ class PlaySpeedsViewController: UIViewController, AVAudioPlayerDelegate {
     
     func restartAudio() {
         player.stop()
+        engine.stop()
+        engine.reset()
         player.currentTime = 0.0
-        player.play()
+        
+        let playerNode = AVAudioPlayerNode()
+        engine.attachNode(playerNode)
+        engine.connect(playerNode, to: effect, format: nil)
+        
+        playerNode.scheduleFile(file, atTime: nil, completionHandler: nil)
+        engine.startAndReturnError(nil)
+        
+        playerNode.play()
         stopButton.hidden = false
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
