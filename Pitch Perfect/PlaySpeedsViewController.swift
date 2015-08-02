@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 
 class PlaySpeedsViewController: UIViewController, AVAudioPlayerDelegate {
-
+    
     var engine: AVAudioEngine!
     var player: AVAudioPlayer!
     var audio: RecordedAudio!
@@ -46,33 +46,34 @@ class PlaySpeedsViewController: UIViewController, AVAudioPlayerDelegate {
     @IBAction func playSlowly(sender: UIButton) {
         effect.rate = 0.5
         effect.pitch = 0
-        restartAudio()
+        startAudio()
     }
 
     @IBAction func playQuickly(sender: UIButton) {
         effect.rate = 2.0
         effect.pitch = 0
-        restartAudio()
+        startAudio()
     }
 
     @IBAction func playHighPitched(sender: UIButton) {
         effect.rate = 1.0
         effect.pitch = 1000
-        restartAudio()
+        startAudio()
     }
 
     @IBAction func playLowPitched(sender: UIButton) {
         effect.rate = 1.0
         effect.pitch = -800
-        restartAudio()
+        startAudio()
     }
     
     @IBAction func stopAudio(sender: UIButton) {
         player.stop()
+        engine.stop()
         stopButton.hidden = true
     }
     
-    func restartAudio() {
+    func startAudio() {
         player.stop()
         engine.stop()
         engine.reset()
@@ -87,9 +88,12 @@ class PlaySpeedsViewController: UIViewController, AVAudioPlayerDelegate {
         do {
             try self.engine.start()
         } catch {}
-            
+        
         playerNode.play()
         stopButton.hidden = false
     }
-
+    
+    func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
+        stopButton.hidden = true
+    }
 }
