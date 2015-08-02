@@ -11,7 +11,8 @@ import AVFoundation
 
 class PlaySpeedsViewController: UIViewController, AVAudioPlayerDelegate {
 
-    var audio = AVAudioPlayer()
+    var player: AVAudioPlayer!
+    var audio: RecordedAudio!
     
     @IBOutlet weak var stopButton: UIButton!
     
@@ -19,11 +20,11 @@ class PlaySpeedsViewController: UIViewController, AVAudioPlayerDelegate {
         super.viewDidLoad()
 
         if let path = NSBundle.mainBundle().pathForResource("movie_quote", ofType: "mp3") {
-            audio = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: path), error: nil)
+            player = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: path), error: nil)
             
-            audio.prepareToPlay()
-            audio.delegate = self
-            audio.enableRate = true
+            player.prepareToPlay()
+            player.delegate = self
+            player.enableRate = true
             
     }
         // Do any additional setup after loading the view.
@@ -35,23 +36,26 @@ class PlaySpeedsViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
     @IBAction func playSlowly(sender: UIButton) {
-        audio.rate = 0.5
-        audio.play()
-        stopButton.hidden = false
+        player.rate = 0.5
+        restartAudio()
     }
 
     @IBAction func playQuickly(sender: UIButton) {
-        audio.rate = 2.0
-        audio.play()
-        stopButton.hidden = false
+        player.rate = 2.0
+        restartAudio()
     }
     
     @IBAction func stopAudio(sender: UIButton) {
-        audio.stop()
+        player.stop()
         stopButton.hidden = true
     }
     
-    
+    func restartAudio() {
+        player.stop()
+        player.currentTime = 0.0
+        player.play()
+        stopButton.hidden = false
+    }
     
     /*
     // MARK: - Navigation
