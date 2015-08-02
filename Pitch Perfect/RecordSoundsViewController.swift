@@ -42,11 +42,14 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         stopButton.hidden = false
         recordButton.enabled = false
         
-        AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord, error: nil)
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord)
+        } catch {}
         
-        let dirPath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0] as! String
-        
-        recorder = AVAudioRecorder(URL: NSURL.fileURLWithPathComponents([dirPath, "recording.wav"]), settings: nil, error: nil)
+        let dirPath = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0] as String
+        do {
+            try recorder = AVAudioRecorder(URL: NSURL.fileURLWithPathComponents([dirPath, "recording.wav"])!, settings: [AVSampleRateKey: 44100.0])
+        } catch {}
         recorder.meteringEnabled = true
         recorder.prepareToRecord()
         recorder.record()
@@ -55,10 +58,12 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     
     @IBAction func stopRecording(sender: UIButton) {
         recorder.stop()
-        AVAudioSession.sharedInstance().setActive(false, error: nil)
+        do {
+            try AVAudioSession.sharedInstance().setActive(false)
+        } catch {}
     }
     
-    func audioRecorderDidFinishRecording(recorder: AVAudioRecorder!, successfully flag: Bool) {
+    func audioRecorderDidFinishRecording(recorder: AVAudioRecorder, successfully flag: Bool) {
         if(flag) {
             audio = RecordedAudio()
             audio.filePathUrl = recorder.url
