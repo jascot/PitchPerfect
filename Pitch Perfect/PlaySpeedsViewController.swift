@@ -17,6 +17,9 @@ class PlaySpeedsViewController: UIViewController, AVAudioPlayerDelegate {
     var effect: AVAudioUnitTimePitch!
     var file: AVAudioFile!
     
+    @IBOutlet weak var speedSlider: UISlider!
+    @IBOutlet weak var pitchSlider: UISlider!
+    
     @IBOutlet weak var stopButton: UIButton!
     
     override func viewDidLoad() {
@@ -40,26 +43,38 @@ class PlaySpeedsViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
     @IBAction func playSlowly(sender: UIButton) {
-        effect.rate = 0.5
-        effect.pitch = 0
+        speedSlider.value = -0.8
+        pitchSlider.value = 0.0
         startAudio()
     }
 
     @IBAction func playQuickly(sender: UIButton) {
-        effect.rate = 2.0
-        effect.pitch = 0
+        speedSlider.value = 0.8
+        pitchSlider.value = 0.0
         startAudio()
     }
 
+    @IBAction func normalSpeed(sender: UIButton) {
+        speedSlider.value = 0.0
+        pitchSlider.value = 0.0
+        startAudio()
+    }
+    
     @IBAction func playHighPitched(sender: UIButton) {
-        effect.rate = 1.0
-        effect.pitch = 1000
+        speedSlider.value = 0.0
+        pitchSlider.value = 800.0
         startAudio()
     }
 
     @IBAction func playLowPitched(sender: UIButton) {
-        effect.rate = 1.0
-        effect.pitch = -800
+        speedSlider.value = 0.0
+        pitchSlider.value = -800.0
+        startAudio()
+    }
+    
+    @IBAction func normalPitch(sender: UIButton) {
+        speedSlider.value = 0.0
+        pitchSlider.value = 0.0
         startAudio()
     }
     
@@ -70,6 +85,9 @@ class PlaySpeedsViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
     func startAudio() {
+        effect.rate = pow (2.0, speedSlider.value)
+        effect.pitch = pitchSlider.value
+        
         player.stop()
         engine.stop()
         engine.reset()
