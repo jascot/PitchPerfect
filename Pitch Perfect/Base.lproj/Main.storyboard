@@ -125,18 +125,24 @@
                             </button>
                             <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-1" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="abK-my-SvT">
                                 <rect key="frame" x="18" y="180" width="284" height="31"/>
+                                <connections>
+                                    <action selector="speedSliderChanged:" destination="SfH-UP-vbH" eventType="valueChanged" id="FU0-PN-dVW"/>
+                                </connections>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-1000" maxValue="1000" translatesAutoresizingMaskIntoConstraints="NO" id="70j-T8-Uvv">
                                 <rect key="frame" x="18" y="326" width="284" height="31"/>
+                                <connections>
+                                    <action selector="pitchSliderChanged:" destination="SfH-UP-vbH" eventType="valueChanged" id="IvX-uJ-qR2"/>
+                                </connections>
                             </slider>
-                            <button opaque="NO" contentMode="center" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="j0K-NE-8Ey">
+                            <button opaque="NO" contentMode="center" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="j0K-NE-8Ey">
                                 <rect key="frame" x="133" y="135" width="55" height="37"/>
                                 <state key="normal" title="Normal Speed"/>
                                 <connections>
                                     <action selector="normalSpeed:" destination="SfH-UP-vbH" eventType="touchUpInside" id="0Jw-Ev-kn3"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="center" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="x53-gp-L8x">
+                            <button opaque="NO" contentMode="center" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="x53-gp-L8x">
                                 <rect key="frame" x="133" y="281" width="55" height="37"/>
                                 <state key="normal" title="Normal Pitch"/>
                                 <connections>
@@ -148,6 +154,7 @@
                         <constraints>
                             <constraint firstItem="70j-T8-Uvv" firstAttribute="leading" secondItem="vny-5M-bdM" secondAttribute="leadingMargin" id="F9b-Gk-QLJ"/>
                             <constraint firstItem="Iv4-aR-2q6" firstAttribute="top" secondItem="MMa-uN-XKn" secondAttribute="bottom" constant="8" id="GmO-gy-Yzb"/>
+                            <constraint firstItem="x53-gp-L8x" firstAttribute="top" secondItem="abK-my-SvT" secondAttribute="bottom" constant="71" id="NFM-MA-yg8"/>
                             <constraint firstItem="70j-T8-Uvv" firstAttribute="trailing" secondItem="vny-5M-bdM" secondAttribute="trailingMargin" id="Nte-bt-Kda"/>
                             <constraint firstAttribute="centerX" secondItem="jAo-NJ-LJr" secondAttribute="centerX" id="Pg0-fF-WQc"/>
                             <constraint firstItem="abK-my-SvT" firstAttribute="trailing" secondItem="vny-5M-bdM" secondAttribute="trailingMargin" id="PlL-lD-EhO"/>
@@ -155,7 +162,10 @@
                             <constraint firstItem="gJh-gW-Sz0" firstAttribute="leading" secondItem="vny-5M-bdM" secondAttribute="leadingMargin" id="Vfs-hR-dCz"/>
                             <constraint firstItem="drC-Fv-5mQ" firstAttribute="top" secondItem="abK-my-SvT" secondAttribute="bottom" constant="8" id="XXo-K9-n1f"/>
                             <constraint firstItem="qox-T9-NoI" firstAttribute="leading" secondItem="vny-5M-bdM" secondAttribute="leadingMargin" id="ZrU-44-GiX"/>
+                            <constraint firstItem="j0K-NE-8Ey" firstAttribute="top" secondItem="MMa-uN-XKn" secondAttribute="bottom" constant="71" id="bFr-1r-ffP"/>
                             <constraint firstItem="abK-my-SvT" firstAttribute="centerX" secondItem="vny-5M-bdM" secondAttribute="centerX" id="ctM-ZA-ztY"/>
+                            <constraint firstItem="x53-gp-L8x" firstAttribute="centerX" secondItem="vny-5M-bdM" secondAttribute="centerX" id="f9O-dc-pIL"/>
+                            <constraint firstItem="j0K-NE-8Ey" firstAttribute="centerX" secondItem="vny-5M-bdM" secondAttribute="centerX" id="f9Z-eS-MwO"/>
                             <constraint firstItem="gJh-gW-Sz0" firstAttribute="top" secondItem="abK-my-SvT" secondAttribute="bottom" constant="8" id="iVI-Mx-Xsb"/>
                             <constraint firstItem="drC-Fv-5mQ" firstAttribute="trailing" secondItem="vny-5M-bdM" secondAttribute="trailingMargin" id="oAa-pm-B0O"/>
                             <constraint firstItem="WW2-B3-KJW" firstAttribute="top" secondItem="jAo-NJ-LJr" secondAttribute="bottom" constant="8" id="oW6-g1-xg0"/>

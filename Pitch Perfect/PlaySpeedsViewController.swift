@@ -44,39 +44,42 @@ class PlaySpeedsViewController: UIViewController, AVAudioPlayerDelegate {
     
     @IBAction func playSlowly(sender: UIButton) {
         speedSlider.value = -0.8
-        pitchSlider.value = 0.0
         startAudio()
     }
 
     @IBAction func playQuickly(sender: UIButton) {
         speedSlider.value = 0.8
-        pitchSlider.value = 0.0
         startAudio()
     }
 
     @IBAction func normalSpeed(sender: UIButton) {
         speedSlider.value = 0.0
-        pitchSlider.value = 0.0
+        startAudio()
+    }
+    
+    @IBAction func speedSliderChanged(sender: UISlider) {
         startAudio()
     }
     
     @IBAction func playHighPitched(sender: UIButton) {
-        speedSlider.value = 0.0
         pitchSlider.value = 800.0
         startAudio()
     }
 
     @IBAction func playLowPitched(sender: UIButton) {
-        speedSlider.value = 0.0
         pitchSlider.value = -800.0
         startAudio()
     }
     
     @IBAction func normalPitch(sender: UIButton) {
-        speedSlider.value = 0.0
         pitchSlider.value = 0.0
         startAudio()
     }
+    
+    @IBAction func pitchSliderChanged(sender: UISlider) {
+        startAudio()
+    }
+    
     
     @IBAction func stopAudio(sender: UIButton) {
         player.stop()
