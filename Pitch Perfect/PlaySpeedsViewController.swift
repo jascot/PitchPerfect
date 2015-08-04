@@ -22,17 +22,13 @@ class PlaySpeedsViewController: UIViewController, AVAudioPlayerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        do {
-            try player = AVAudioPlayer(contentsOfURL: audio.filePathUrl)
-        } catch {}
+        do {try player = AVAudioPlayer(contentsOfURL: audio.filePathUrl)} catch {}
         engine = AVAudioEngine()
         effect = AVAudioUnitTimePitch()
         engine.attachNode(effect)
         engine.connect(effect, to: engine.outputNode, format: nil)
         
-        do {
-            try file = AVAudioFile(forReading: audio.filePathUrl)
-        } catch {}
+        do {try file = AVAudioFile(forReading: audio.filePathUrl)} catch {}
         
         player.prepareToPlay()
         player.delegate = self
@@ -85,9 +81,7 @@ class PlaySpeedsViewController: UIViewController, AVAudioPlayerDelegate {
         
         playerNode.scheduleFile(file, atTime: nil, completionHandler: nil)
         
-        do {
-            try self.engine.start()
-        } catch {}
+        do {try self.engine.start()} catch {}
         
         playerNode.play()
         stopButton.hidden = false
