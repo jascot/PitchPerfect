@@ -27,8 +27,8 @@
                                     <action selector="recordAudio:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="oD5-Wo-NHU"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Bd-bs-EYZ">
-                                <rect key="frame" x="135" y="422" width="50" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Bd-bs-EYZ">
+                                <rect key="frame" x="52" y="422" width="50" height="50"/>
                                 <state key="normal" image="Stop">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -42,21 +42,31 @@
                                 <color key="textColor" red="0.68685752467105265" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f6B-Tf-AXT">
+                                <rect key="frame" x="218" y="422" width="50" height="50"/>
+                                <state key="normal" image="Pause"/>
+                                <connections>
+                                    <action selector="pauseRecording:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="KPa-PW-yZQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="QDV-mp-tgK" firstAttribute="top" secondItem="6yo-PT-CPt" secondAttribute="bottom" constant="8" id="3LY-g8-XA2"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="f6B-Tf-AXT" secondAttribute="trailing" constant="36" id="3pw-SG-v8W"/>
                             <constraint firstAttribute="centerX" secondItem="6yo-PT-CPt" secondAttribute="centerX" id="5sq-5b-TsB"/>
-                            <constraint firstAttribute="centerX" secondItem="6Bd-bs-EYZ" secondAttribute="centerX" id="7gM-g7-UpT"/>
+                            <constraint firstItem="6Bd-bs-EYZ" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="36" id="CzV-ga-lUW"/>
                             <constraint firstAttribute="centerY" secondItem="6yo-PT-CPt" secondAttribute="centerY" id="V1J-Jp-paF"/>
                             <constraint firstItem="QDV-mp-tgK" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="gT8-Hh-tCp"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="6Bd-bs-EYZ" secondAttribute="bottom" constant="8" id="qhm-ZY-8AF"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="f6B-Tf-AXT" secondAttribute="bottom" constant="8" id="tqC-TB-chb"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Record" id="MVe-kP-d6I"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="pauseButton" destination="f6B-Tf-AXT" id="px7-x7-MSJ"/>
                         <outlet property="recordButton" destination="6yo-PT-CPt" id="YnO-hQ-iWK"/>
                         <outlet property="recordingLabel" destination="QDV-mp-tgK" id="4gI-Bd-FfE"/>
                         <outlet property="stopButton" destination="6Bd-bs-EYZ" id="eCg-xR-O1l"/>
@@ -240,6 +250,7 @@
         <image name="Low Pitch" width="50" height="50"/>
         <image name="Microphone" width="100" height="100"/>
         <image name="Normal Pitch" width="50" height="50"/>
+        <image name="Pause" width="50" height="50"/>
         <image name="Play" width="50" height="50"/>
         <image name="Quick" width="50" height="50"/>
         <image name="Reverb" width="50" height="50"/>
