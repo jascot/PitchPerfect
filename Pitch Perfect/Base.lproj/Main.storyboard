@@ -217,7 +217,6 @@
                         <outlet property="pitchSlider" destination="70j-T8-Uvv" id="HNb-cx-AvU"/>
                         <outlet property="reverbButton" destination="hcT-T2-9DZ" id="xHy-u1-g9A"/>
                         <outlet property="speedSlider" destination="abK-my-SvT" id="ApV-ZR-Xtb"/>
-                        <outlet property="stopButton" destination="jAo-NJ-LJr" id="1h7-ag-r0z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5b5-4y-enM" userLabel="First Responder" sceneMemberID="firstResponder"/>

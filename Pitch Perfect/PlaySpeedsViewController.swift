@@ -23,17 +23,12 @@ class PlaySpeedsViewController: UIViewController {
     @IBOutlet weak var echoButton: UIButton!
     @IBOutlet weak var reverbButton: UIButton!
     
-    @IBOutlet weak var stopButton: UIButton!
-    
+    // Build our Audio Instances array for output.
     override func viewDidLoad() {
         super.viewDidLoad()
         for _ in 0...20 {
             instances.append(AudioInstance(audio: audio))
         }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
     
     @IBAction func playSlowly(sender: UIButton) {
@@ -51,6 +46,7 @@ class PlaySpeedsViewController: UIViewController {
         startAudio()
     }
     
+    // Start playing if speed is changed.
     @IBAction func speedSliderChanged(sender: UISlider) {
         startAudio()
     }
@@ -70,26 +66,31 @@ class PlaySpeedsViewController: UIViewController {
         startAudio()
     }
     
+    // Start playing if pitch is changed.
     @IBAction func pitchSliderChanged(sender: UISlider) {
         startAudio()
     }
     
+    // Toggle echo and start.
     @IBAction func echoClicked(sender: UIButton) {
         echo = !echo
         echoButton.alpha = echo ? 1.0 : 0.6
         startAudio()
     }
     
+    // Toggle reverb and start.
     @IBAction func reverbClicked(sender: UIButton) {
         reverb = !reverb
         reverbButton.alpha = reverb ? 1.0 : 0.6
         startAudio()
     }
     
+    // Stop should stop every instance.
     @IBAction func stopAudio(sender: UIButton) {
-        for i in instances {i.stop()}
+        for i in instances {i.engine.stop()}
     }
     
+    // The number of instances we start depends upon the echo and reverb options.
     func startAudio() {
         stopAudio(stopButton)
         for x in 0...(echo ? 2 : 0) {
