@@ -11,31 +11,25 @@ import AVFoundation
 
 class PlaySpeedsViewController: UIViewController, AVAudioPlayerDelegate {
     
-    var engine: AVAudioEngine!
-    var player: AVAudioPlayer!
+    var i: AudioInstance!
+    
     var audio: RecordedAudio!
-    var effect: AVAudioUnitTimePitch!
-    var file: AVAudioFile!
+
+    var echo = false
+    var reverb = false
+    
     
     @IBOutlet weak var speedSlider: UISlider!
     @IBOutlet weak var pitchSlider: UISlider!
+    
+    @IBOutlet weak var echoButton: UIButton!
+    @IBOutlet weak var reverbButton: UIButton!
     
     @IBOutlet weak var stopButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        do {try player = AVAudioPlayer(contentsOfURL: audio.filePathUrl)} catch {}
-        engine = AVAudioEngine()
-        effect = AVAudioUnitTimePitch()
-        engine.attachNode(effect)
-        engine.connect(effect, to: engine.outputNode, format: nil)
-        
-        do {try file = AVAudioFile(forReading: audio.filePathUrl)} catch {}
-        
-        player.prepareToPlay()
-        player.delegate = self
-        player.enableRate = true
+        i = AudioInstance(audio: audio, delegate: self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -80,31 +74,27 @@ class PlaySpeedsViewController: UIViewController, AVAudioPlayerDelegate {
         startAudio()
     }
     
+    @IBAction func echoClicked(sender: UIButton) {
+        echo = !echo
+        echoButton.alpha = echo ? 1.0 : 0.6
+        startAudio()
+    }
+    
+    @IBAction func reverbClicked(sender: UIButton) {
+        reverb = !reverb
+        reverbButton.alpha = reverb ? 1.0 : 0.6
+        startAudio()
+    }
     
     @IBAction func stopAudio(sender: UIButton) {
-        player.stop()
-        engine.stop()
+        i.stop()
         stopButton.hidden = true
     }
     
     func startAudio() {
-        effect.rate = pow (2.0, speedSlider.value)
-        effect.pitch = pitchSlider.value
+        i.setEffect(speedSlider.value, pitch: pitchSlider.value)
         
-        player.stop()
-        engine.stop()
-        engine.reset()
-        player.currentTime = 0.0
-        
-        let playerNode = AVAudioPlayerNode()
-        engine.attachNode(playerNode)
-        engine.connect(playerNode, to: effect, format: nil)
-        
-        playerNode.scheduleFile(file, atTime: nil, completionHandler: nil)
-        
-        do {try self.engine.start()} catch {}
-        
-        playerNode.play()
+        i.playAudioIn(5)
         stopButton.hidden = false
     }
     
