@@ -80,7 +80,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qox-T9-NoI">
-                                <rect key="frame" x="20" y="72" width="100" height="100"/>
+                                <rect key="frame" x="20" y="72" width="50" height="50"/>
+                                <rect key="contentStretch" x="0.0" y="0.0" width="0.5" height="0.5"/>
                                 <state key="normal" image="Slow">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -89,7 +90,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iv4-aR-2q6">
-                                <rect key="frame" x="200" y="72" width="100" height="100"/>
+                                <rect key="frame" x="250" y="72" width="50" height="50"/>
+                                <rect key="contentStretch" x="0.0" y="0.0" width="0.5" height="0.5"/>
                                 <state key="normal" image="Quick">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -107,15 +109,17 @@
                                     <action selector="stopRecording:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="txL-OK-H7s"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJh-gW-Sz0">
-                                <rect key="frame" x="20" y="218" width="100" height="100"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gJh-gW-Sz0">
+                                <rect key="frame" x="20" y="276" width="50" height="50"/>
+                                <rect key="contentStretch" x="0.0" y="0.0" width="0.5" height="0.5"/>
                                 <state key="normal" image="Low Pitch"/>
                                 <connections>
                                     <action selector="playLowPitched:" destination="SfH-UP-vbH" eventType="touchUpInside" id="vTY-1C-SKD"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="drC-Fv-5mQ">
-                                <rect key="frame" x="200" y="218" width="100" height="100"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="drC-Fv-5mQ">
+                                <rect key="frame" x="250" y="276" width="50" height="50"/>
+                                <rect key="contentStretch" x="0.0" y="0.0" width="0.5" height="0.5"/>
                                 <state key="normal" image="High Pitch">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -123,28 +127,30 @@
                                     <action selector="playHighPitched:" destination="SfH-UP-vbH" eventType="touchUpInside" id="X6x-Dm-Nar"/>
                                 </connections>
                             </button>
-                            <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-1" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="abK-my-SvT">
-                                <rect key="frame" x="18" y="180" width="284" height="31"/>
+                            <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-1" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="abK-my-SvT">
+                                <rect key="frame" x="18" y="130" width="284" height="31"/>
                                 <connections>
                                     <action selector="speedSliderChanged:" destination="SfH-UP-vbH" eventType="valueChanged" id="FU0-PN-dVW"/>
                                 </connections>
                             </slider>
-                            <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-1000" maxValue="1000" translatesAutoresizingMaskIntoConstraints="NO" id="70j-T8-Uvv">
-                                <rect key="frame" x="18" y="326" width="284" height="31"/>
+                            <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="-1000" maxValue="1000" translatesAutoresizingMaskIntoConstraints="NO" id="70j-T8-Uvv">
+                                <rect key="frame" x="18" y="334" width="284" height="31"/>
                                 <connections>
                                     <action selector="pitchSliderChanged:" destination="SfH-UP-vbH" eventType="valueChanged" id="IvX-uJ-qR2"/>
                                 </connections>
                             </slider>
-                            <button opaque="NO" contentMode="center" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="j0K-NE-8Ey">
-                                <rect key="frame" x="133" y="135" width="55" height="37"/>
-                                <state key="normal" title="Normal Speed"/>
+                            <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="j0K-NE-8Ey">
+                                <rect key="frame" x="135" y="72" width="50" height="50"/>
+                                <rect key="contentStretch" x="0.0" y="0.0" width="0.5" height="0.5"/>
+                                <state key="normal" image="Play"/>
                                 <connections>
                                     <action selector="normalSpeed:" destination="SfH-UP-vbH" eventType="touchUpInside" id="0Jw-Ev-kn3"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="center" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="x53-gp-L8x">
-                                <rect key="frame" x="133" y="281" width="55" height="37"/>
-                                <state key="normal" title="Normal Pitch"/>
+                            <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="x53-gp-L8x">
+                                <rect key="frame" x="135" y="276" width="50" height="50"/>
+                                <rect key="contentStretch" x="0.0" y="0.0" width="0.5" height="0.5"/>
+                                <state key="normal" image="Normal Pitch"/>
                                 <connections>
                                     <action selector="normalPitch:" destination="SfH-UP-vbH" eventType="touchUpInside" id="Xga-dc-q1N"/>
                                 </connections>
@@ -152,26 +158,30 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="70j-T8-Uvv" firstAttribute="leading" secondItem="vny-5M-bdM" secondAttribute="leadingMargin" id="F9b-Gk-QLJ"/>
-                            <constraint firstItem="Iv4-aR-2q6" firstAttribute="top" secondItem="MMa-uN-XKn" secondAttribute="bottom" constant="8" id="GmO-gy-Yzb"/>
-                            <constraint firstItem="x53-gp-L8x" firstAttribute="top" secondItem="abK-my-SvT" secondAttribute="bottom" constant="71" id="NFM-MA-yg8"/>
-                            <constraint firstItem="70j-T8-Uvv" firstAttribute="trailing" secondItem="vny-5M-bdM" secondAttribute="trailingMargin" id="Nte-bt-Kda"/>
+                            <constraint firstItem="70j-T8-Uvv" firstAttribute="trailing" secondItem="vny-5M-bdM" secondAttribute="trailingMargin" id="04C-Y1-9O7"/>
+                            <constraint firstItem="j0K-NE-8Ey" firstAttribute="centerX" secondItem="vny-5M-bdM" secondAttribute="centerX" id="2Ny-BV-nRY"/>
+                            <constraint firstItem="abK-my-SvT" firstAttribute="top" secondItem="j0K-NE-8Ey" secondAttribute="bottom" constant="8" id="AXy-Ph-OgF"/>
+                            <constraint firstItem="70j-T8-Uvv" firstAttribute="top" secondItem="drC-Fv-5mQ" secondAttribute="bottom" constant="8" id="Bog-cE-u9l"/>
+                            <constraint firstItem="x53-gp-L8x" firstAttribute="centerX" secondItem="vny-5M-bdM" secondAttribute="centerX" id="KHk-Rj-9EE"/>
+                            <constraint firstItem="abK-my-SvT" firstAttribute="leading" secondItem="vny-5M-bdM" secondAttribute="leadingMargin" id="Kfw-gc-Lvw"/>
+                            <constraint firstItem="abK-my-SvT" firstAttribute="trailing" secondItem="vny-5M-bdM" secondAttribute="trailingMargin" id="Lji-Um-4Q9"/>
                             <constraint firstAttribute="centerX" secondItem="jAo-NJ-LJr" secondAttribute="centerX" id="Pg0-fF-WQc"/>
-                            <constraint firstItem="abK-my-SvT" firstAttribute="trailing" secondItem="vny-5M-bdM" secondAttribute="trailingMargin" id="PlL-lD-EhO"/>
-                            <constraint firstItem="70j-T8-Uvv" firstAttribute="centerX" secondItem="vny-5M-bdM" secondAttribute="centerX" id="Ry0-5K-8iM"/>
-                            <constraint firstItem="gJh-gW-Sz0" firstAttribute="leading" secondItem="vny-5M-bdM" secondAttribute="leadingMargin" id="Vfs-hR-dCz"/>
-                            <constraint firstItem="drC-Fv-5mQ" firstAttribute="top" secondItem="abK-my-SvT" secondAttribute="bottom" constant="8" id="XXo-K9-n1f"/>
-                            <constraint firstItem="qox-T9-NoI" firstAttribute="leading" secondItem="vny-5M-bdM" secondAttribute="leadingMargin" id="ZrU-44-GiX"/>
-                            <constraint firstItem="j0K-NE-8Ey" firstAttribute="top" secondItem="MMa-uN-XKn" secondAttribute="bottom" constant="71" id="bFr-1r-ffP"/>
-                            <constraint firstItem="abK-my-SvT" firstAttribute="centerX" secondItem="vny-5M-bdM" secondAttribute="centerX" id="ctM-ZA-ztY"/>
-                            <constraint firstItem="x53-gp-L8x" firstAttribute="centerX" secondItem="vny-5M-bdM" secondAttribute="centerX" id="f9O-dc-pIL"/>
-                            <constraint firstItem="j0K-NE-8Ey" firstAttribute="centerX" secondItem="vny-5M-bdM" secondAttribute="centerX" id="f9Z-eS-MwO"/>
-                            <constraint firstItem="gJh-gW-Sz0" firstAttribute="top" secondItem="abK-my-SvT" secondAttribute="bottom" constant="8" id="iVI-Mx-Xsb"/>
-                            <constraint firstItem="drC-Fv-5mQ" firstAttribute="trailing" secondItem="vny-5M-bdM" secondAttribute="trailingMargin" id="oAa-pm-B0O"/>
+                            <constraint firstItem="Iv4-aR-2q6" firstAttribute="top" secondItem="MMa-uN-XKn" secondAttribute="bottom" constant="8" id="R7G-Pw-DMf"/>
+                            <constraint firstItem="70j-T8-Uvv" firstAttribute="leading" secondItem="vny-5M-bdM" secondAttribute="leadingMargin" id="Rfi-cM-lOj"/>
+                            <constraint firstItem="jAo-NJ-LJr" firstAttribute="top" secondItem="70j-T8-Uvv" secondAttribute="bottom" constant="8" id="UcZ-aW-BAp"/>
+                            <constraint firstItem="70j-T8-Uvv" firstAttribute="top" secondItem="x53-gp-L8x" secondAttribute="bottom" constant="8" id="WOa-U7-Rhz"/>
+                            <constraint firstItem="qox-T9-NoI" firstAttribute="top" secondItem="MMa-uN-XKn" secondAttribute="bottom" constant="8" id="X9h-6c-F3D"/>
+                            <constraint firstItem="70j-T8-Uvv" firstAttribute="trailing" secondItem="vny-5M-bdM" secondAttribute="trailingMargin" id="Ye6-PS-2Xf"/>
+                            <constraint firstItem="drC-Fv-5mQ" firstAttribute="trailing" secondItem="vny-5M-bdM" secondAttribute="trailingMargin" id="ZkH-JG-hiv"/>
+                            <constraint firstItem="70j-T8-Uvv" firstAttribute="top" secondItem="gJh-gW-Sz0" secondAttribute="bottom" constant="8" id="daN-Qc-tzF"/>
+                            <constraint firstItem="Iv4-aR-2q6" firstAttribute="trailing" secondItem="vny-5M-bdM" secondAttribute="trailingMargin" id="fG2-QI-wO6"/>
+                            <constraint firstItem="70j-T8-Uvv" firstAttribute="centerX" secondItem="vny-5M-bdM" secondAttribute="centerX" id="hCK-8l-NK3"/>
                             <constraint firstItem="WW2-B3-KJW" firstAttribute="top" secondItem="jAo-NJ-LJr" secondAttribute="bottom" constant="8" id="oW6-g1-xg0"/>
-                            <constraint firstItem="Iv4-aR-2q6" firstAttribute="trailing" secondItem="vny-5M-bdM" secondAttribute="trailingMargin" id="qjA-LS-ErN"/>
-                            <constraint firstItem="qox-T9-NoI" firstAttribute="top" secondItem="MMa-uN-XKn" secondAttribute="bottom" constant="8" id="qrK-K6-8dV"/>
-                            <constraint firstItem="abK-my-SvT" firstAttribute="leading" secondItem="vny-5M-bdM" secondAttribute="leadingMargin" id="y4k-RH-kMP"/>
+                            <constraint firstItem="qox-T9-NoI" firstAttribute="leading" secondItem="vny-5M-bdM" secondAttribute="leadingMargin" id="v13-Zy-39K"/>
+                            <constraint firstItem="abK-my-SvT" firstAttribute="centerX" secondItem="vny-5M-bdM" secondAttribute="centerX" id="vmz-NN-shb"/>
+                            <constraint firstItem="70j-T8-Uvv" firstAttribute="leading" secondItem="vny-5M-bdM" secondAttribute="leadingMargin" id="xBa-bL-MCN"/>
+                            <constraint firstItem="j0K-NE-8Ey" firstAttribute="top" secondItem="MMa-uN-XKn" secondAttribute="bottom" constant="8" id="xHJ-Eu-SEs"/>
+                            <constraint firstItem="gJh-gW-Sz0" firstAttribute="leading" secondItem="vny-5M-bdM" secondAttribute="leadingMargin" id="xhD-zQ-JTa"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
@@ -206,11 +216,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="High Pitch" width="100" height="100"/>
-        <image name="Low Pitch" width="100" height="100"/>
+        <image name="High Pitch" width="50" height="50"/>
+        <image name="Low Pitch" width="50" height="50"/>
         <image name="Microphone" width="100" height="100"/>
-        <image name="Quick" width="100" height="100"/>
-        <image name="Slow" width="100" height="100"/>
+        <image name="Normal Pitch" width="50" height="50"/>
+        <image name="Play" width="50" height="50"/>
+        <image name="Quick" width="50" height="50"/>
+        <image name="Slow" width="50" height="50"/>
         <image name="Stop" width="100" height="100"/>
     </resources>
 </document>
