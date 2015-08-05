@@ -9,15 +9,13 @@
 import UIKit
 import AVFoundation
 
-class PlaySpeedsViewController: UIViewController, AVAudioPlayerDelegate {
+class PlaySpeedsViewController: UIViewController {
     
     var instances: [AudioInstance]! = [AudioInstance]()
-    
     var audio: RecordedAudio!
 
     var echo = false
     var reverb = false
-    
     
     @IBOutlet weak var speedSlider: UISlider!
     @IBOutlet weak var pitchSlider: UISlider!
@@ -30,7 +28,7 @@ class PlaySpeedsViewController: UIViewController, AVAudioPlayerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         for _ in 0...20 {
-            instances.append(AudioInstance(audio: audio, delegate: self))
+            instances.append(AudioInstance(audio: audio))
         }
     }
 
@@ -90,22 +88,15 @@ class PlaySpeedsViewController: UIViewController, AVAudioPlayerDelegate {
     
     @IBAction func stopAudio(sender: UIButton) {
         for i in instances {i.stop()}
-        stopButton.hidden = true
     }
     
     func startAudio() {
         stopAudio(stopButton)
         for x in 0...(echo ? 2 : 0) {
             for y in 0...(reverb ? 6 : 0) {
-                let v = pow(0.3, Float(x)) * pow(1.4, Float(y - (reverb ? 4 : 0)))
+                let v = pow(0.3, Float(x)) * pow(1.6, Float(reverb ? y - 5 : 0))
                 instances[x + (y * 3)].playAudio(speedSlider.value, pitch: pitchSlider.value, volume: v, delay: Double(x) * 0.3 + Double(y) * 0.05)
             }
-        }
-        
-        stopButton.hidden = false
-    }
-    
-    func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
-        stopButton.hidden = true
+        }        
     }
 }

@@ -17,7 +17,7 @@ class AudioInstance: NSObject {
     var node: AVAudioPlayerNode!
     var mixer: AVAudioMixerNode!
     
-    init(audio: RecordedAudio, delegate: AVAudioPlayerDelegate) {
+    init(audio: RecordedAudio) {
         do {try player = AVAudioPlayer(contentsOfURL: audio.filePathUrl)} catch {}
         engine = AVAudioEngine()
         effect = AVAudioUnitTimePitch()
