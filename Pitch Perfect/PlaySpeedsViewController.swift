@@ -11,7 +11,7 @@ import AVFoundation
 
 class PlaySpeedsViewController: UIViewController, AVAudioPlayerDelegate {
     
-    var i: AudioInstance!
+    var instances: [AudioInstance]! = [AudioInstance]()
     
     var audio: RecordedAudio!
 
@@ -29,7 +29,9 @@ class PlaySpeedsViewController: UIViewController, AVAudioPlayerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        i = AudioInstance(audio: audio, delegate: self)
+        for _ in 0...20 {
+            instances.append(AudioInstance(audio: audio, delegate: self))
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -87,14 +89,19 @@ class PlaySpeedsViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
     @IBAction func stopAudio(sender: UIButton) {
-        i.stop()
+        for i in instances {i.stop()}
         stopButton.hidden = true
     }
     
     func startAudio() {
-        i.setEffect(speedSlider.value, pitch: pitchSlider.value)
+        stopAudio(stopButton)
+        for x in 0...(echo ? 2 : 0) {
+            for y in 0...(reverb ? 6 : 0) {
+                let v = pow(0.3, Float(x)) * pow(1.4, Float(y - (reverb ? 4 : 0)))
+                instances[x + (y * 3)].playAudio(speedSlider.value, pitch: pitchSlider.value, volume: v, delay: Double(x) * 0.3 + Double(y) * 0.05)
+            }
+        }
         
-        i.playAudioIn(5)
         stopButton.hidden = false
     }
     

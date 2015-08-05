@@ -15,46 +15,40 @@ class AudioInstance: NSObject {
     var effect: AVAudioUnitTimePitch!
     var file: AVAudioFile!
     var node: AVAudioPlayerNode!
+    var mixer: AVAudioMixerNode!
     
     init(audio: RecordedAudio, delegate: AVAudioPlayerDelegate) {
         do {try player = AVAudioPlayer(contentsOfURL: audio.filePathUrl)} catch {}
         engine = AVAudioEngine()
         effect = AVAudioUnitTimePitch()
+        mixer = AVAudioMixerNode()
 
         engine.attachNode(effect)
+        engine.attachNode(mixer)
         engine.connect(effect, to: engine.outputNode, format: nil)
 
         do {try file = AVAudioFile(forReading: audio.filePathUrl)} catch {}
-        
-        player.prepareToPlay()
-        player.delegate = delegate
-        player.enableRate = true
     }
     
-    func playAudioIn(delay: NSTimeInterval) {
-        player.stop()
+    func playAudio(speed: Float, pitch: Float, volume: Float, delay: NSTimeInterval) {
         engine.stop()
         engine.reset()
-        player.currentTime = 0
-        
-        node = AVAudioPlayerNode()
-        
-        engine.attachNode(node)
-        engine.connect(node, to: effect, format: nil)
 
+        node = AVAudioPlayerNode()
+        node.volume = volume
+        engine.attachNode(node)
+        engine.connect(node, to: mixer, format: nil)
+        engine.connect(mixer, to: effect, format: nil)
+        effect.rate = pow (2.0, speed)
+        effect.pitch = pitch
+        
         do {try self.engine.start()} catch {}
 
         node.scheduleFile(file, atTime: nil, completionHandler: nil)
         node.playAtTime(AVAudioTime(hostTime: AVAudioTime.hostTimeForSeconds(player.deviceCurrentTime + delay)))
     }
-    
-    func setEffect(speed: Float, pitch: Float) {
-        effect.rate = pow (2.0, speed)
-        effect.pitch = pitch
-    }
-    
+        
     func stop() {
-        player.stop()
         engine.stop()
     }
 }
