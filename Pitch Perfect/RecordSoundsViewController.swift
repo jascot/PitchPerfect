@@ -30,9 +30,9 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         okayToStartRecording(false)
         
         if(!paused) {
-            do {try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord)} catch {}
+            AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord, error: nil)
         
-            do {try recorder = AVAudioRecorder(URL: NSURL.fileURLWithPathComponents([NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0] as String, "recording.wav"])!, settings: [AVSampleRateKey: 44100.0])} catch {}
+            recorder = AVAudioRecorder(URL: NSURL.fileURLWithPathComponents([NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.DocumentDirectory, NSSearchPathDomainMask.UserDomainMask, true)[0] as! String, "recording.wav"])!, settings: [AVSampleRateKey: 44100.0], error: nil)
             recorder.meteringEnabled = true
             recorder.delegate = self
             recorder.prepareToRecord()
@@ -43,7 +43,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     // Stop the recorder and deactivate the session when stop is pressed.
     @IBAction func stopRecording(sender: UIButton) {
         recorder.stop()
-        do {try AVAudioSession.sharedInstance().setActive(false)} catch {}
+        AVAudioSession.sharedInstance().setActive(false, error: nil)
     }
     
     // When we pause, the message should say "Tap Mic to Continue" instead of "Tap Mic to Record"

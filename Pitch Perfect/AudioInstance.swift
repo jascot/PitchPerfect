@@ -19,7 +19,7 @@ class AudioInstance: NSObject {
     
     // We need the engine and effect for pitch effects, and the mixer so volumes can combine into echo and reverb effects.
     init(audio: RecordedAudio) {
-        do {try player = AVAudioPlayer(contentsOfURL: audio.filePathUrl)} catch {}
+        player = AVAudioPlayer(contentsOfURL: audio.filePathUrl, error: nil)
         engine = AVAudioEngine()
         effect = AVAudioUnitTimePitch()
         mixer = AVAudioMixerNode()
@@ -28,7 +28,7 @@ class AudioInstance: NSObject {
         engine.attachNode(mixer)
         engine.connect(effect, to: engine.outputNode, format: nil)
 
-        do {try file = AVAudioFile(forReading: audio.filePathUrl)} catch {}
+        file = AVAudioFile(forReading: audio.filePathUrl, error: nil)
     }
 
     // We want to be able to play the clip at various speeds, pitches, volumes, and delays.
@@ -44,8 +44,8 @@ class AudioInstance: NSObject {
         effect.rate = pow (2.0, speed)
         effect.pitch = pitch
         
-        do {try self.engine.start()} catch {}
-
+        self.engine.startAndReturnError(nil)
+        
         node.scheduleFile(file, atTime: nil, completionHandler: nil)
         node.playAtTime(AVAudioTime(hostTime: AVAudioTime.hostTimeForSeconds(player.deviceCurrentTime + delay)))
     }    
