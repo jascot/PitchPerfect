@@ -92,6 +92,7 @@ class PlaySpeedsViewController: UIViewController {
     
     // The number of instances we start depends upon the echo and reverb options.
     func startAudio() {
+        stopAudio(UIButton())
         for x in 0...(echo ? 2 : 0) {
             for y in 0...(reverb ? 6 : 0) {
                 let v = pow(0.3, Float(x)) * pow(1.6, Float(reverb ? y - 5 : 0))
